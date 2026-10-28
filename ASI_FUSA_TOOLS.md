@@ -8,7 +8,7 @@ The name tells you the role before you open the folder.
 | Repo | Named after | Because | Role | Package / command | Version |
 |---|---|---|---|---|---|
 | `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.7.4 |
-| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.8.2 |
+| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.8.3 |
 | `asi_escher` | **M. C. Escher** (1898 to 1972), graphic artist of impossible geometry | he drew structure | **Generator.** Pure-Python diagram engine: activity, flowchart, state machine, and SysML BDD / IBD / REQ diagrams, laid out by a deterministic layered algorithm and rendered to PNG, SVG, Graphviz DOT, and Mermaid. No Graphviz, Node, or browser needed. | `asi_escher` / `asi-escher` | 0.1.1 |
 | `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.2.1 |
 | `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.4 |
@@ -319,6 +319,7 @@ set relative to the charter. Each plan's last phase updates this table and the t
 | 0.8.0 | | the Weekly Activity Tracker and sprints: `tracker` and `sprint` verbs, three entities, the one-table rule retired (phases 1 to 3) | `docs/weekly-tracker-plan.md` | shipped in the working tree (2026-10-28) |
 | 0.8.1 | | the tracker in the window: the Dashboard's sprint strip, the Sprint Board and Weekly Status screens | `docs/weekly-tracker-plan.md` | shipped in the working tree (2026-10-28) |
 | 0.8.2 | | two sprints numbered across the programme: Sprint 1 10/12 to 10/27 (Phase 2, closed), Sprint 2 10/27 to 11/10 (Phase 3, active); `FINAL SPRINTS` retired by owner decision, there is no HARA sprint | `CHANGELOG.md` | shipped in the working tree (2026-10-28) |
+| 0.8.3 | | Safety Plan Matrix stacked: PDP phase > safety lifecycle phase > safety deliverable as one indented column beside `order` | `CHANGELOG.md` | shipped and tagged v0.8.3 (2026-10-28) |
 
 ### Releases and tags
 
@@ -329,7 +330,7 @@ version and the first line of the CHANGELOG entry; `git push origin vx.y.z` publ
 GitHub Release of the same name carries the CHANGELOG section as its notes, so the release page and
 the file never say different things. Tags are never moved; a mistake is a new patch version. The
 histories were restarted on 2026-10-28, so versions before the first tag of each repo exist in
-`CHANGELOG.md` only. Current tags: asi_dewey v0.7.4, asi_kletz v0.8.2, asi_escher v0.1.1,
+`CHANGELOG.md` only. Current tags: asi_dewey v0.7.4, asi_kletz v0.8.3, asi_escher v0.1.1,
 asi_gutenberg v0.2.1, asi_hopper v0.1.4; asi_fusa_tools and asi_onboarding carry dates, not versions.
 
 ## Where the integration plans live
@@ -382,3 +383,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-28: broken-windows sweep across every repo (escher 0.1.1 with a back-edge label fix, gutenberg 0.2.1, hopper 0.1.4 with a self-healing MCP gateway after a rotated token and one-minute call waits, dewey 0.7.3, kletz 0.7.4); frozen identity columns and fitted column widths in the primary tools; a toolchain bootstrap script in Roy's Brain; JIRA Live Data never connects on its own, fetches off the UI thread and is scoped to the person running the tool.*
 *Revision 2026-10-28, later the same day: dewey 0.7.4 (URL cells and fields are clickable on the Links, QMS Documents and Jira Tickets screens); kletz 0.8.2 (two sprints numbered across the programme, Sprint 1 10/12 to 10/27 in Phase 2 and Sprint 2 10/27 to 11/10 in Phase 3; the label FINAL SPRINTS retired by owner decision: one dated interval is one sprint, there is no HARA sprint).*
 *Revision 2026-10-28, evening: Releases and tags, the first annotated tags and GitHub Releases of every versioned sibling.*
+*Revision 2026-10-28, night: kletz 0.8.3, the Safety Plan Matrix stacked by owner request.*
