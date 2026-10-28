@@ -307,10 +307,10 @@ set relative to the charter. Each plan's last phase updates this table and the t
 
 | Version | asi_dewey | asi_kletz | Plan | Status |
 |---|---|---|---|---|
-| 0.3.0 | theme palette | theme palette | `docs/theme-palette-plan.md` | shipped (in the working trees, tags left to the owner) |
-| 0.4.0 | prune windows | all 63 columns on the Safety Plan screen | `docs/prune-windows-plan.md` / `docs/all-columns-plan.md` | shipped (in the working trees, tags left to the owner) |
-| 0.5.0 | JIRA Live Data window | JIRA Live Data window | `docs/jira-live-data-plan.md` | shipped (in the working trees, tags left to the owner) |
-| 0.6.0 | the family lock | the family lock | `docs/single-instance-plan.md` | shipped (in the working trees, tags left to the owner) |
+| 0.3.0 | theme palette | theme palette | `docs/theme-palette-plan.md` | shipped (in the working trees; tagged from 2026-10-28 on, see Releases and tags) |
+| 0.4.0 | prune windows | all 63 columns on the Safety Plan screen | `docs/prune-windows-plan.md` / `docs/all-columns-plan.md` | shipped (in the working trees; tagged from 2026-10-28 on, see Releases and tags) |
+| 0.5.0 | JIRA Live Data window | JIRA Live Data window | `docs/jira-live-data-plan.md` | shipped (in the working trees; tagged from 2026-10-28 on, see Releases and tags) |
+| 0.6.0 | the family lock | the family lock | `docs/single-instance-plan.md` | shipped (in the working trees; tagged from 2026-10-28 on, see Releases and tags) |
 | 0.7.0 | automation server, theme badge | automation server, theme badge | `docs/automation-server-plan.md` | planned |
 | 0.7.1 | every table column fits its widest text, heading and lookup values included; JIRA Live Data filters as a grid | same | `CHANGELOG.md` | shipped in the working trees (2026-10-27) |
 | 0.7.2 | broken-windows sweep: README, CHANGELOG links, plan statuses, docstrings | frozen identity columns on both Safety Plan screens; JIRA Live Data filters as a grid | `CHANGELOG.md` | shipped in the working trees (2026-10-28) |
@@ -319,6 +319,18 @@ set relative to the charter. Each plan's last phase updates this table and the t
 | 0.8.0 | | the Weekly Activity Tracker and sprints: `tracker` and `sprint` verbs, three entities, the one-table rule retired (phases 1 to 3) | `docs/weekly-tracker-plan.md` | shipped in the working tree (2026-10-28) |
 | 0.8.1 | | the tracker in the window: the Dashboard's sprint strip, the Sprint Board and Weekly Status screens | `docs/weekly-tracker-plan.md` | shipped in the working tree (2026-10-28) |
 | 0.8.2 | | two sprints numbered across the programme: Sprint 1 10/12 to 10/27 (Phase 2, closed), Sprint 2 10/27 to 11/10 (Phase 3, active); `FINAL SPRINTS` retired by owner decision, there is no HARA sprint | `CHANGELOG.md` | shipped in the working tree (2026-10-28) |
+
+### Releases and tags
+
+Decided 2026-10-28. A version exists when three things agree: `version` in `pyproject.toml` (and
+`version.py` where the package has one), a dated `## [x.y.z]` section in `CHANGELOG.md`, and an
+annotated git tag `vx.y.z` on the commit that made the bump. The tag message is the repo, the
+version and the first line of the CHANGELOG entry; `git push origin vx.y.z` publishes it, and a
+GitHub Release of the same name carries the CHANGELOG section as its notes, so the release page and
+the file never say different things. Tags are never moved; a mistake is a new patch version. The
+histories were restarted on 2026-10-28, so versions before the first tag of each repo exist in
+`CHANGELOG.md` only. Current tags: asi_dewey v0.7.4, asi_kletz v0.8.2, asi_escher v0.1.1,
+asi_gutenberg v0.2.1, asi_hopper v0.1.4; asi_fusa_tools and asi_onboarding carry dates, not versions.
 
 ## Where the integration plans live
 
@@ -369,3 +381,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-27: moved from ASI_FAMILY.md, retitled, hopper and the version ladder added.*
 *Revision 2026-10-28: broken-windows sweep across every repo (escher 0.1.1 with a back-edge label fix, gutenberg 0.2.1, hopper 0.1.4 with a self-healing MCP gateway after a rotated token and one-minute call waits, dewey 0.7.3, kletz 0.7.4); frozen identity columns and fitted column widths in the primary tools; a toolchain bootstrap script in Roy's Brain; JIRA Live Data never connects on its own, fetches off the UI thread and is scoped to the person running the tool.*
 *Revision 2026-10-28, later the same day: dewey 0.7.4 (URL cells and fields are clickable on the Links, QMS Documents and Jira Tickets screens); kletz 0.8.2 (two sprints numbered across the programme, Sprint 1 10/12 to 10/27 in Phase 2 and Sprint 2 10/27 to 11/10 in Phase 3; the label FINAL SPRINTS retired by owner decision: one dated interval is one sprint, there is no HARA sprint).*
+*Revision 2026-10-28, evening: Releases and tags, the first annotated tags and GitHub Releases of every versioned sibling.*

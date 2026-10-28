@@ -7,6 +7,8 @@ because this repo holds a document and no code.
 ## [2026-10-28, later the same day]
 
 ### Changed
+- Releases and tags: a version is `pyproject.toml` + a dated CHANGELOG section + an annotated `vx.y.z` tag with a
+  GitHub Release carrying that section; first tags on every versioned sibling.
 - The version ladder and the title table: asi_dewey 0.7.4 (clickable URL cells and fields on Links, QMS
   Documents and Jira Tickets), asi_kletz 0.8.2 (two sprints numbered across the programme; `FINAL SPRINTS`
   retired by owner decision, there is no HARA sprint).
