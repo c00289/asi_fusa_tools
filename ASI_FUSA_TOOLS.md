@@ -8,7 +8,7 @@ The name tells you the role before you open the folder.
 | Repo | Named after | Because | Role | Package / command | Version |
 |---|---|---|---|---|---|
 | `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.8.1 |
-| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.11.0 |
+| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.11.1 |
 | `asi_escher` | **M. C. Escher** (1898 to 1972), graphic artist of impossible geometry | he drew structure | **Generator.** Pure-Python diagram engine: activity, flowchart, state machine, and SysML BDD / IBD / REQ diagrams, laid out by a deterministic layered algorithm and rendered to PNG, SVG, Graphviz DOT, and Mermaid. No Graphviz, Node, or browser needed. | `asi_escher` / `asi-escher` | 0.1.1 |
 | `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.2.1 |
 | `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.5 |
@@ -277,6 +277,9 @@ The table below is the authority. Both repos carry it byte for byte.
 
 *Removed from the Dewey window in asi_dewey 0.8.1 by the owner's instruction of 2026-10-28; the `jira`
 verbs and the Jira ticket cache stay. The convention below now describes the Kletz window alone.*
+*Since asi_kletz 0.11.1 a Refresh that meets a rejected Atlassian session signs in (the browser opens) and then
+fetches; the window still never connects on its own: the opt-in first-show fetch reports a rejected session and
+opens nothing.*
 
 Decided 2026-10-27, implemented in asi_dewey 0.5.0 and planned for asi_kletz under its own
 `docs/jira-live-data-plan.md`. One window, common to both tools, right below the dashboard: a
@@ -369,6 +372,7 @@ set relative to the charter. Each plan's last phase updates this table and the t
 | 0.9.1 | | the frozen left pane of the Safety Plan and the Matrix opens at its full fitted width, the longest row; `RIGHT_MIN` 120 px for the scrolling pane | `CHANGELOG.md` | shipped and tagged v0.9.1 (2026-10-28) |
 | 0.10.0 | | the sprint planner: a `holiday` entity seeded with the US calendar 2026 to 2029, business-day arithmetic, `sprint plan` three years out in 10-business-day sprints that stretch over holidays, `SPRINT_CAPACITY = 8` fixed and enforced on open (closed sprints keep their history), the TIMELINE names the next planned sprint only | `docs/sprint-planner-plan.md` | shipped and tagged v0.10.0 (2026-10-28) |
 | 0.11.0 | | points on the Safety Plan row; `default_points` from the four-agent estimation panel (`docs/deliverable-points.md`, 174 points); `sprint` and Expected Duration/Deadline calculated by a pure scheduler over the sprint chain, recomputed after every change; the form shows the default and says so when the typed number differs | `docs/plan-points-plan.md` | shipped and tagged v0.11.0 (2026-10-28) |
+| 0.11.1 | | Refresh on the JIRA Live Data screen signs in to Atlassian itself when the session is rejected (the browser opens for the approval, the fetch follows; one sign-in per Refresh, never on the first-show fetch); `jira login` on the command line; needs asi_hopper 0.1.5 | `CHANGELOG.md` | shipped and tagged v0.11.1 (2026-10-28) |
 
 ### Releases and tags
 
@@ -379,7 +383,7 @@ version and the first line of the CHANGELOG entry; `git push origin vx.y.z` publ
 GitHub Release of the same name carries the CHANGELOG section as its notes, so the release page and
 the file never say different things. Tags are never moved; a mistake is a new patch version. The
 histories were restarted on 2026-10-28, so versions before the first tag of each repo exist in
-`CHANGELOG.md` only. Current tags: asi_dewey v0.8.1, asi_kletz v0.11.0, asi_escher v0.1.1,
+`CHANGELOG.md` only. Current tags: asi_dewey v0.8.1, asi_kletz v0.11.1, asi_escher v0.1.1,
 asi_gutenberg v0.2.1, asi_hopper v0.1.5; asi_fusa_tools and asi_onboarding carry dates, not versions.
 
 ## Where the integration plans live
@@ -443,3 +447,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-28, night: kletz 0.10.0, the sprint planner and the fixed capacity.*
 *Revision 2026-10-28, last: kletz 0.11.0, points and calculated deadlines.*
 *Revision 2026-10-28, evening again: hopper 0.1.5, a rejected Atlassian session is named (the leaf of the exception group) and `auth status` probes the session.*
+*Revision 2026-10-28, closing: kletz 0.11.1, Refresh signs in.*
