@@ -7,6 +7,8 @@ because this repo holds a document and no code.
 ## [2026-10-28, later the same day]
 
 ### Changed
+- asi_dewey 0.8.1 (the JIRA Live Data window removed from Dewey; the convention section now describes Kletz
+  alone) and asi_kletz 0.9.1 (the frozen pane at its full fitted width) on the ladder; workbooks reconcile by replace.
 - New sections "Identity: `id` and `uid`" and "Sprints (asi_kletz)"; the hidden-identity plans in the index;
   asi_dewey 0.8.0 and asi_kletz 0.9.0 on the ladder.
 - asi_kletz 0.8.4 on the ladder: the Safety Plan table stacked the same way as the matrix.
