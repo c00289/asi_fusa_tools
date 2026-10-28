@@ -1,0 +1,14 @@
+# a documentation repo: nothing is built or run here
+
+# editor and OS noise
+.vscode/
+.idea/
+*.swp
+*.tmp
+~$*
+Thumbs.db
+desktop.ini
+
+# OneDrive placeholders and lock files
+.849C9593-*
+*.lock

@@ -1,0 +1,20 @@
+# Changelog
+
+All notable changes to the ASI FuSa Tools charter are recorded here. The format follows
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
+because this repo holds a document and no code.
+
+## [2026-10-27, later the same day]
+
+### Changed
+- The automation server convention (0.7.0 in both tools), the version ladder marked shipped through 0.7.0,
+  asi_hopper 0.1.1 (event size limit, `LIST_FIELDS`, page size), the plans index statuses.
+
+## 2026-10-27
+
+### Changed
+- Moved from the loose `ASI_FAMILY.md` in the OneDrive folder into this repo as
+  `ASI_FUSA_TOOLS.md` and retitled "ASI FuSa Tools"; `asi_hopper` (the Jira gateway, 0.1.0) and
+  this repo join the title table and the layout tree; the house rules gain the documentation-repo
+  line and the rule that conventions keep their names; the version ladder and the full plans
+  index are added. See `docs/fusa-tools-plan.md`.
