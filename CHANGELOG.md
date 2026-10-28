@@ -7,6 +7,7 @@ because this repo holds a document and no code.
 ## [2026-10-28, later the same day]
 
 ### Changed
+- asi_hopper 0.1.5 in the title table: the gateway reports the leaf of an exception group, `auth status` probes the session.
 - asi_kletz 0.11.0 on the ladder and its plan in the index: points, panel defaults, calculated sprint and deadline.
 - asi_kletz 0.10.0 on the ladder and its plan in the index: holidays, the sprint planner, the fixed capacity of 8.
 - asi_dewey 0.8.1 (the JIRA Live Data window removed from Dewey; the convention section now describes Kletz

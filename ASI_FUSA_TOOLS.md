@@ -11,7 +11,7 @@ The name tells you the role before you open the folder.
 | `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.11.0 |
 | `asi_escher` | **M. C. Escher** (1898 to 1972), graphic artist of impossible geometry | he drew structure | **Generator.** Pure-Python diagram engine: activity, flowchart, state machine, and SysML BDD / IBD / REQ diagrams, laid out by a deterministic layered algorithm and rendered to PNG, SVG, Graphviz DOT, and Mermaid. No Graphviz, Node, or browser needed. | `asi_escher` / `asi-escher` | 0.1.1 |
 | `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.2.1 |
-| `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.4 |
+| `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.5 |
 | `asi_fusa_tools` | nobody; it is the charter, not a tool | | **Charter.** This document, the conventions every repo tests against, and the plans index. No code. | none | dated |
 
 ## The ontology
@@ -380,7 +380,7 @@ GitHub Release of the same name carries the CHANGELOG section as its notes, so t
 the file never say different things. Tags are never moved; a mistake is a new patch version. The
 histories were restarted on 2026-10-28, so versions before the first tag of each repo exist in
 `CHANGELOG.md` only. Current tags: asi_dewey v0.8.1, asi_kletz v0.11.0, asi_escher v0.1.1,
-asi_gutenberg v0.2.1, asi_hopper v0.1.4; asi_fusa_tools and asi_onboarding carry dates, not versions.
+asi_gutenberg v0.2.1, asi_hopper v0.1.5; asi_fusa_tools and asi_onboarding carry dates, not versions.
 
 ## Where the integration plans live
 
@@ -442,3 +442,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-28, later still: dewey 0.8.1 (no JIRA Live Data window), kletz 0.9.1 (the frozen pane at its full width); workbooks reconcile by replace.*
 *Revision 2026-10-28, night: kletz 0.10.0, the sprint planner and the fixed capacity.*
 *Revision 2026-10-28, last: kletz 0.11.0, points and calculated deadlines.*
+*Revision 2026-10-28, evening again: hopper 0.1.5, a rejected Atlassian session is named (the leaf of the exception group) and `auth status` probes the session.*
