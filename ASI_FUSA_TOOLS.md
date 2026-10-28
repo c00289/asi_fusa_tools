@@ -7,8 +7,8 @@ The name tells you the role before you open the folder.
 
 | Repo | Named after | Because | Role | Package / command | Version |
 |---|---|---|---|---|---|
-| `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.7.4 |
-| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.8.4 |
+| `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.8.0 |
+| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.9.0 |
 | `asi_escher` | **M. C. Escher** (1898 to 1972), graphic artist of impossible geometry | he drew structure | **Generator.** Pure-Python diagram engine: activity, flowchart, state machine, and SysML BDD / IBD / REQ diagrams, laid out by a deterministic layered algorithm and rendered to PNG, SVG, Graphviz DOT, and Mermaid. No Graphviz, Node, or browser needed. | `asi_escher` / `asi-escher` | 0.1.1 |
 | `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.2.1 |
 | `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.4 |
@@ -141,6 +141,44 @@ Non-edges matter as much:
   entries, and git history, and nothing else: no `pyproject.toml`, no `uv`, no tests.
 - Conventions keep their names once tests refer to them: *the family lock* and *the family
   palette* stay so named.
+
+## Identity: `id` and `uid`
+
+Decided 2026-10-28, implemented in asi_dewey 0.8.0 and asi_kletz 0.9.0 (the two
+`docs/hidden-identity-plan.md`). Every row of every entity in both tools has two identities:
+
+- **`id`**, the integer primary key: the handle. It is what a command takes (`update task 2 ...`),
+  the row iid of every tree, the audit log's `entity_id`, the status bar's "Task 2 selected" and
+  the details frame's title. It is typed by people and agents all day, so it stays short. It is
+  stable inside one database only and is **shown in no table**.
+- **`uid`**, a canonical lowercase UUID4 (36 characters): the trace. Assigned once on creation,
+  never changed (`update` refuses it: `uid is immutable`), unique per table, hidden from every table
+  and form (`FieldSpec.hidden`, `EntitySchema.visible_fields`), carried by every file the tool
+  writes (the last key of a JSON row; the last column of every workbook sheet, headed `uid` and
+  hidden in the sheet) and honoured by every import: a row whose uid is known is an update of that
+  row whatever its id in the file; otherwise an id that is known is an update by id in merge mode,
+  and the stored uid takes the file's uid when they differ (the one deliberate identity
+  reconciliation, which is how Dewey's cached plan rows take Kletz's); otherwise an insert that keeps
+  the file's uid. A database from before the rule gains the column, the index and a uid on every
+  row the first time it is opened (`stamp_uids`, audited per table that had rows).
+- `get`, `update` and `delete` accept a uid where an id is expected; `list --filter uid=...` works
+  as for any field. A document or a sibling that must point at a row points at its uid.
+- **No table shows `id` or `order`.** The order of the elements is kept by each entity's `order`
+  field (editable in the form) and `order_by`, and by the stack on the two Safety Plan screens.
+
+## Sprints (asi_kletz)
+
+Decided by the owner 2026-10-28, for the sprint planner, the deadline calculation and the point
+estimates:
+
+- **A sprint spans 10 business days.** Monday to Friday count; weekends and holidays do not, so a
+  sprint that contains a holiday ends one calendar day later per holiday. Dates move as holidays
+  become real; the cadence does not.
+- **Capacity is 8 points per sprint, company policy** (8 productive days of the 10). Holidays never
+  reduce points.
+- Sprints are consecutive with no gaps, numbered across the programme (`SPRINT n`); the chain
+  continues from Sprint 2 (2026-10-27 to 2026-11-10). Every agent that touches sprints, estimates or
+  deadlines carries this rule in its brief.
 
 ## One primary tool at a time (the family lock)
 
@@ -321,6 +359,7 @@ set relative to the charter. Each plan's last phase updates this table and the t
 | 0.8.2 | | two sprints numbered across the programme: Sprint 1 10/12 to 10/27 (Phase 2, closed), Sprint 2 10/27 to 11/10 (Phase 3, active); `FINAL SPRINTS` retired by owner decision, there is no HARA sprint | `CHANGELOG.md` | shipped in the working tree (2026-10-28) |
 | 0.8.3 | | Safety Plan Matrix stacked: PDP phase > safety lifecycle phase > safety deliverable as one indented column beside `order` | `CHANGELOG.md` | shipped and tagged v0.8.3 (2026-10-28) |
 | 0.8.4 | | Safety Plan table stacked the same way; the stacking shared by the two screens in `gui/screens.py` | `CHANGELOG.md` | shipped and tagged v0.8.4 (2026-10-28) |
+| 0.8.0 (dewey) / 0.9.0 (kletz) | hidden `uid` on every entity, no `id` / `order` column on any table, files carry the uid, imports match by uid, a uid where an id is expected | same | `docs/hidden-identity-plan.md` in each repo | shipped and tagged v0.8.0 / v0.9.0 (2026-10-28) |
 
 ### Releases and tags
 
@@ -331,7 +370,7 @@ version and the first line of the CHANGELOG entry; `git push origin vx.y.z` publ
 GitHub Release of the same name carries the CHANGELOG section as its notes, so the release page and
 the file never say different things. Tags are never moved; a mistake is a new patch version. The
 histories were restarted on 2026-10-28, so versions before the first tag of each repo exist in
-`CHANGELOG.md` only. Current tags: asi_dewey v0.7.4, asi_kletz v0.8.4, asi_escher v0.1.1,
+`CHANGELOG.md` only. Current tags: asi_dewey v0.8.0, asi_kletz v0.9.0, asi_escher v0.1.1,
 asi_gutenberg v0.2.1, asi_hopper v0.1.4; asi_fusa_tools and asi_onboarding carry dates, not versions.
 
 ## Where the integration plans live
@@ -357,6 +396,8 @@ One row per plan in every repo. Status is one of Implemented x.y.z, Decided, Pro
 | [asi_hopper/docs/proposal.md](../asi_hopper/docs/proposal.md) | Hopper itself: the audited, replayable Jira door. The read side shipped as 0.1.0; the write side (sandbox, plans, apply) is a design, not a plan with a date. | Read side implemented in 0.1.0; write side delayed indefinitely by owner decision (2026-10-27), not to be raised again |
 | [asi_dewey/docs/onboarding-ingest-plan.md](../asi_dewey/docs/onboarding-ingest-plan.md) | Dewey ingests functional-safety knowledge from the ASI onboarding transcripts into `dewey.db` and the generated workbook. | Proposed, not yet executed |
 | [asi_kletz/docs/weekly-tracker-plan.md](../asi_kletz/docs/weekly-tracker-plan.md) | Kletz holds the engineer's Weekly Activity Tracker: sprints of ten points, sprint items and weeks; the status text imported once and built back out, whole or for the current week; the one-table rule retired. | Phases 1 to 3 implemented 0.8.0, the screens 0.8.1; the burndown and velocity diagrams and the sprint report open |
+| [asi_dewey/docs/hidden-identity-plan.md](../asi_dewey/docs/hidden-identity-plan.md) | Every row carries a hidden `uid`; no table shows `id` or `order`; files carry the uid and imports honour it. | Implemented 0.8.0 |
+| [asi_kletz/docs/hidden-identity-plan.md](../asi_kletz/docs/hidden-identity-plan.md) | The same convention for the plan, the sprints, the items and the weeks, implemented independently. | Implemented 0.9.0 |
 | [asi_fusa_tools/docs/fusa-tools-plan.md](docs/fusa-tools-plan.md) | The family document becomes this repo and this file: retitled, hopper and the version ladder added, every sibling's links swept. | Implemented 2026-10-27 |
 
 Existing design documents: [asi_dewey/docs/plan.md](../asi_dewey/docs/plan.md) and
@@ -386,3 +427,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-28, evening: Releases and tags, the first annotated tags and GitHub Releases of every versioned sibling.*
 *Revision 2026-10-28, night: kletz 0.8.3, the Safety Plan Matrix stacked by owner request.*
 *Revision 2026-10-28, night, later: kletz 0.8.4, the Safety Plan table stacked too.*
+*Revision 2026-10-28, late: Identity (`id` and `uid`) and Sprints sections; dewey 0.8.0 and kletz 0.9.0 on the ladder, their plans in the index.*

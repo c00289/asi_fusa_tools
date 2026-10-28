@@ -7,6 +7,8 @@ because this repo holds a document and no code.
 ## [2026-10-28, later the same day]
 
 ### Changed
+- New sections "Identity: `id` and `uid`" and "Sprints (asi_kletz)"; the hidden-identity plans in the index;
+  asi_dewey 0.8.0 and asi_kletz 0.9.0 on the ladder.
 - asi_kletz 0.8.4 on the ladder: the Safety Plan table stacked the same way as the matrix.
 - asi_kletz 0.8.3 on the ladder: the Safety Plan Matrix stacked (PDP phase > lifecycle phase > deliverable).
 - Releases and tags: a version is `pyproject.toml` + a dated CHANGELOG section + an annotated `vx.y.z` tag with a
