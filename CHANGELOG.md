@@ -7,6 +7,7 @@ because this repo holds a document and no code.
 ## [2026-10-28, later the same day]
 
 ### Changed
+- asi_kletz 0.8.4 on the ladder: the Safety Plan table stacked the same way as the matrix.
 - asi_kletz 0.8.3 on the ladder: the Safety Plan Matrix stacked (PDP phase > lifecycle phase > deliverable).
 - Releases and tags: a version is `pyproject.toml` + a dated CHANGELOG section + an annotated `vx.y.z` tag with a
   GitHub Release carrying that section; first tags on every versioned sibling.
