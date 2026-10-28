@@ -4,6 +4,13 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## [2026-10-28, later the same day]
+
+### Changed
+- The version ladder and the title table: asi_dewey 0.7.4 (clickable URL cells and fields on Links, QMS
+  Documents and Jira Tickets), asi_kletz 0.8.2 (two sprints numbered across the programme; `FINAL SPRINTS`
+  retired by owner decision, there is no HARA sprint).
+
 ## [2026-10-27, later the same day]
 
 ### Changed
