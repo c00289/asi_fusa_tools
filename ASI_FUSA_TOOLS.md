@@ -8,7 +8,7 @@ The name tells you the role before you open the folder.
 | Repo | Named after | Because | Role | Package / command | Version |
 |---|---|---|---|---|---|
 | `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.8.1 |
-| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.10.0 |
+| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.11.0 |
 | `asi_escher` | **M. C. Escher** (1898 to 1972), graphic artist of impossible geometry | he drew structure | **Generator.** Pure-Python diagram engine: activity, flowchart, state machine, and SysML BDD / IBD / REQ diagrams, laid out by a deterministic layered algorithm and rendered to PNG, SVG, Graphviz DOT, and Mermaid. No Graphviz, Node, or browser needed. | `asi_escher` / `asi-escher` | 0.1.1 |
 | `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.2.1 |
 | `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.4 |
@@ -368,6 +368,7 @@ set relative to the charter. Each plan's last phase updates this table and the t
 | 0.8.1 | the JIRA Live Data screen removed from the window; `jira` verbs kept; the uid merge rule aligned with Kletz | | `CHANGELOG.md` | shipped and tagged v0.8.1 (2026-10-28) |
 | 0.9.1 | | the frozen left pane of the Safety Plan and the Matrix opens at its full fitted width, the longest row; `RIGHT_MIN` 120 px for the scrolling pane | `CHANGELOG.md` | shipped and tagged v0.9.1 (2026-10-28) |
 | 0.10.0 | | the sprint planner: a `holiday` entity seeded with the US calendar 2026 to 2029, business-day arithmetic, `sprint plan` three years out in 10-business-day sprints that stretch over holidays, `SPRINT_CAPACITY = 8` fixed and enforced on open (closed sprints keep their history), the TIMELINE names the next planned sprint only | `docs/sprint-planner-plan.md` | shipped and tagged v0.10.0 (2026-10-28) |
+| 0.11.0 | | points on the Safety Plan row; `default_points` from the four-agent estimation panel (`docs/deliverable-points.md`, 174 points); `sprint` and Expected Duration/Deadline calculated by a pure scheduler over the sprint chain, recomputed after every change; the form shows the default and says so when the typed number differs | `docs/plan-points-plan.md` | shipped and tagged v0.11.0 (2026-10-28) |
 
 ### Releases and tags
 
@@ -378,7 +379,7 @@ version and the first line of the CHANGELOG entry; `git push origin vx.y.z` publ
 GitHub Release of the same name carries the CHANGELOG section as its notes, so the release page and
 the file never say different things. Tags are never moved; a mistake is a new patch version. The
 histories were restarted on 2026-10-28, so versions before the first tag of each repo exist in
-`CHANGELOG.md` only. Current tags: asi_dewey v0.8.1, asi_kletz v0.10.0, asi_escher v0.1.1,
+`CHANGELOG.md` only. Current tags: asi_dewey v0.8.1, asi_kletz v0.11.0, asi_escher v0.1.1,
 asi_gutenberg v0.2.1, asi_hopper v0.1.4; asi_fusa_tools and asi_onboarding carry dates, not versions.
 
 ## Where the integration plans live
@@ -407,6 +408,7 @@ One row per plan in every repo. Status is one of Implemented x.y.z, Decided, Pro
 | [asi_dewey/docs/hidden-identity-plan.md](../asi_dewey/docs/hidden-identity-plan.md) | Every row carries a hidden `uid`; no table shows `id` or `order`; files carry the uid and imports honour it. | Implemented 0.8.0 |
 | [asi_kletz/docs/hidden-identity-plan.md](../asi_kletz/docs/hidden-identity-plan.md) | The same convention for the plan, the sprints, the items and the weeks, implemented independently. | Implemented 0.9.0 |
 | [asi_kletz/docs/sprint-planner-plan.md](../asi_kletz/docs/sprint-planner-plan.md) | Holidays, business days, three years of empty 8-point sprints, the capacity rule enforced. | Implemented 0.10.0 |
+| [asi_kletz/docs/plan-points-plan.md](../asi_kletz/docs/plan-points-plan.md) | Points per deliverable with panel-estimated defaults; sprint and deadline calculated from the chain. | Implemented 0.11.0 |
 | [asi_fusa_tools/docs/fusa-tools-plan.md](docs/fusa-tools-plan.md) | The family document becomes this repo and this file: retitled, hopper and the version ladder added, every sibling's links swept. | Implemented 2026-10-27 |
 
 Existing design documents: [asi_dewey/docs/plan.md](../asi_dewey/docs/plan.md) and
@@ -439,3 +441,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-28, late: Identity (`id` and `uid`) and Sprints sections; dewey 0.8.0 and kletz 0.9.0 on the ladder, their plans in the index.*
 *Revision 2026-10-28, later still: dewey 0.8.1 (no JIRA Live Data window), kletz 0.9.1 (the frozen pane at its full width); workbooks reconcile by replace.*
 *Revision 2026-10-28, night: kletz 0.10.0, the sprint planner and the fixed capacity.*
+*Revision 2026-10-28, last: kletz 0.11.0, points and calculated deadlines.*

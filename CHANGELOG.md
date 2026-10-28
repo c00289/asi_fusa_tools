@@ -7,6 +7,7 @@ because this repo holds a document and no code.
 ## [2026-10-28, later the same day]
 
 ### Changed
+- asi_kletz 0.11.0 on the ladder and its plan in the index: points, panel defaults, calculated sprint and deadline.
 - asi_kletz 0.10.0 on the ladder and its plan in the index: holidays, the sprint planner, the fixed capacity of 8.
 - asi_dewey 0.8.1 (the JIRA Live Data window removed from Dewey; the convention section now describes Kletz
   alone) and asi_kletz 0.9.1 (the frozen pane at its full fitted width) on the ladder; workbooks reconcile by replace.
