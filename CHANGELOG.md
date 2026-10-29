@@ -4,6 +4,21 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## [2026-10-29, later the same day]
+
+### Added
+- asi_kletz 0.15.1 and 0.15.2 on the ladder and in the title table: a plan out of phase order no longer breaks the
+  stacked screens; the mouse wheel over a combobox never picks a value.
+- The Policies section: Jira write side closed (2026-10-27), Confluence reads only, controlled documents private,
+  the sprint rule (10 business days, 8 points, holidays stretch the dates), the privacy wording (v.00 and the
+  biographies deleted for PII).
+- `asi_onboarding` in the title table and the layout tree; `asi_standards` in the layout tree.
+
+### Changed
+- The 0.7.0 ladder row says shipped (it said planned); the hopper integration row names the Kletz side's
+  `jira_key` and ticket picker as implemented; the Kletz-to-Hopper edge no longer says "later"; the tracker
+  plan's row says 8 points per sprint, not ten.
+
 ## 2026-10-29
 
 ### Added

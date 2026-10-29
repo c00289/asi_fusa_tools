@@ -1,6 +1,6 @@
 # ASI FuSa Tools
 
-Six sibling repositories in one folder, one naming scheme, one job: the functional-safety tooling
+Eight sibling repositories in one folder, one naming scheme, one job: the functional-safety tooling
 for the Wheel Loader programme. Every tool repo is called `asi_<surname>` after a person whose
 life's work is the job the repo does; this repo, `asi_fusa_tools`, is the charter they all follow.
 The name tells you the role before you open the folder.
@@ -8,12 +8,13 @@ The name tells you the role before you open the folder.
 | Repo | Named after | Because | Role | Package / command | Version |
 |---|---|---|---|---|---|
 | `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.8.2 |
-| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.15.0 |
+| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.15.2 |
 | `asi_escher` | **M. C. Escher** (1898 to 1972), graphic artist of impossible geometry | he drew structure | **Generator.** Pure-Python diagram engine: activity, flowchart, state machine, and SysML BDD / IBD / REQ diagrams, laid out by a deterministic layered algorithm and rendered to PNG, SVG, Graphviz DOT, and Mermaid. No Graphviz, Node, or browser needed. | `asi_escher` / `asi-escher` | 0.1.1 |
 | `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.6.0 |
 | `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.5 |
 | `asi_fusa_tools` | nobody; it is the charter, not a tool | | **Charter.** This document, the conventions every repo tests against, and the plans index. No code. | none | dated |
 | `asi_standards` | nobody; it is a shelf, not a tool | | **Private.** The parametrised standards: a controlled document brought in from Word with asi_gutenberg (`from_docx`), the original preserved byte for byte with its SHA-256, the imported Markdown source beside it, its blanks named as `{{ parameters }}` and filled at build. Documents and dated entries, no code. First: the QF-17 Safety Plan (2026-10-29). | `asi_standards` | dated |
+| `asi_onboarding` | nobody; it is a corpus, not a tool | | **Content.** The October 2026 onboarding sessions as work products: the shareable transcript corpus (v.01 to v.05: people as positions in brackets, employee-only topics removed; the verbatim v.00 and the biographies were deleted for PII and are not to be recreated), 64 diagrams drawn with asi_escher, ten decks built from them. A content repo, no package. | none | dated |
 
 ## The ontology
 
@@ -109,7 +110,7 @@ Edges, spelled out:
 | `asi_kletz` | `asi_escher` | diagrams of the lifecycle, each phase's flow, the status board |
 | `asi_kletz` | `asi_gutenberg` | the Safety Plan document, status reports, phase checklists |
 | `asi_dewey` | `asi_hopper` | live Jira issues: the JIRA Live Data window, `jira sync` into the ticket cache |
-| `asi_kletz` | `asi_hopper` | live Jira issues: the JIRA Live Data window; Jira links on deliverables later |
+| `asi_kletz` | `asi_hopper` | live Jira issues: the JIRA Live Data window; `jira_key` on every plan row (0.14.0) and the ticket picker on every work product (0.15.0) |
 | `asi_gutenberg` | `asi_escher` | a `diagram` block that renders to a figure inside the document |
 | `asi_escher` | nothing | the bottom of the stack |
 | `asi_hopper` | nothing from the tools | a gateway: it reads Jira and knows nothing about the tools |
@@ -149,6 +150,24 @@ Non-edges matter as much:
   `ruff check src tests` and `pytest -q` on `windows-latest` (Tk is there, so the GUI tests run) on every
   push to main, every `v*` tag and every pull request; a repo that depends on siblings checks them out
   beside itself. A release is green by that run, not by anyone's word.
+
+## Policies
+
+Owner decisions that bind every repo and every agent brief, collected here so no plan has to rediscover them:
+
+- **Jira: reads only; the write side is closed (owner, 2026-10-27).** asi_hopper is the one door and it
+  never writes; no tool, plan or agent proposes Jira writes or a sandbox for them, and the question is not
+  raised again.
+- **Confluence: reads only.** The tools and the agents read Confluence pages as reference and never create or
+  edit one.
+- **Controlled documents stay private.** A QMS document, a form or a plan with people's names lives in
+  `asi_standards` (private) and never enters a public repo, not even in history; asi_gutenberg (public) holds
+  the machinery and none of the documents.
+- **The sprint rule.** A sprint is 10 business days and 8 points; a holiday stretches the dates and never cuts
+  the points (the Sprints section below). Every brief that touches sprints, estimates or deadlines carries it.
+- **The privacy wording for onboarding material.** The verbatim transcript dump with names (v.00) and the
+  biographies were *deleted for PII*; they were never moved, archived or kept elsewhere, and are not to be
+  recreated. Text anywhere that says otherwise is wrong and is corrected.
 
 ## Identity: `id` and `uid`
 
@@ -368,7 +387,7 @@ set relative to the charter. Each plan's last phase updates this table and the t
 | 0.4.0 | prune windows | all 63 columns on the Safety Plan screen | `docs/prune-windows-plan.md` / `docs/all-columns-plan.md` | shipped (in the working trees; tagged from 2026-10-28 on, see Releases and tags) |
 | 0.5.0 | JIRA Live Data window | JIRA Live Data window | `docs/jira-live-data-plan.md` | shipped (in the working trees; tagged from 2026-10-28 on, see Releases and tags) |
 | 0.6.0 | the family lock | the family lock | `docs/single-instance-plan.md` | shipped (in the working trees; tagged from 2026-10-28 on, see Releases and tags) |
-| 0.7.0 | automation server, theme badge | automation server, theme badge | `docs/automation-server-plan.md` | planned |
+| 0.7.0 | automation server, theme badge | automation server, theme badge | `docs/automation-server-plan.md` | shipped (in the working trees; tagged from 2026-10-28 on, see Releases and tags) |
 | 0.7.1 | every table column fits its widest text, heading and lookup values included; JIRA Live Data filters as a grid | same | `CHANGELOG.md` | shipped in the working trees (2026-10-27) |
 | 0.7.2 | broken-windows sweep: README, CHANGELOG links, plan statuses, docstrings | frozen identity columns on both Safety Plan screens; JIRA Live Data filters as a grid | `CHANGELOG.md` | shipped in the working trees (2026-10-28) |
 | 0.7.3 | JIRA Live Data fetches on a worker thread, never on its own; house JQL scoped to the person running the tool | broken-windows sweep; draggable split between pinned and scrolling columns | `CHANGELOG.md` | shipped in the working trees (2026-10-28) |
@@ -393,6 +412,8 @@ set relative to the charter. Each plan's last phase updates this table and the t
 | 0.14.0 | | standards and export: `standards_dir` (the private asi_standards), a standard per QMS reference flag, `jira_key` on the plan row, the `parameter` entity, `plan export --row` filling the 165 parameters of the QF-17 Safety Plan through asi_gutenberg (chosen points, sprint end, live Jira status per row; never the default points), the Export document button and the Document parameters box at the top of the Safety Plan's details (schema 8) | `CHANGELOG.md` | shipped and tagged v0.14.0 (2026-10-29) |
 | 0.14.1 | | the export keeps the source's own page orientations: portrait with the plan table on landscape pages, as the original (asi_gutenberg 0.6.0 section blocks) | `CHANGELOG.md` | shipped and tagged v0.14.1 (2026-10-29) |
 | 0.15.0 | | the exported points are the weight the schedule used (chosen points, else the row's default; the floor never); a Jira ticket picker on every work product with Load tickets (one fetch on the worker, the sign-in on a rejected session); `plan tickets` | `CHANGELOG.md` | shipped and tagged v0.15.0 (2026-10-29) |
+| 0.15.1 | | a plan out of phase order no longer breaks the stacked screens: a phase that opens again in the Treeview takes a unique iid (`pdp:2#2`), so the Safety Plan table, the matrix and its frozen pane paint the whole plan | `CHANGELOG.md` | shipped in the working tree (2026-10-29) |
+| 0.15.2 | | the mouse wheel over a combobox in a scrollable form never picks a value: the wheel scrolls, a value changes only by a pick or a keystroke | `CHANGELOG.md` | shipped in the working tree (2026-10-29) |
 
 ### Releases and tags
 
@@ -403,8 +424,8 @@ version and the first line of the CHANGELOG entry; `git push origin vx.y.z` publ
 GitHub Release of the same name carries the CHANGELOG section as its notes, so the release page and
 the file never say different things. Tags are never moved; a mistake is a new patch version. The
 histories were restarted on 2026-10-28, so versions before the first tag of each repo exist in
-`CHANGELOG.md` only. Current tags: asi_dewey v0.8.2, asi_kletz v0.15.0, asi_escher v0.1.1,
-asi_gutenberg v0.6.0, asi_hopper v0.1.5; asi_fusa_tools and asi_onboarding carry dates, not versions.
+`CHANGELOG.md` only. Current tags: asi_dewey v0.8.2, asi_kletz v0.15.0 (0.15.1 and 0.15.2 are committed, their tags follow), asi_escher v0.1.1,
+asi_gutenberg v0.6.0, asi_hopper v0.1.5; asi_fusa_tools, asi_standards and asi_onboarding carry dates, not versions.
 
 ## Where the integration plans live
 
@@ -425,10 +446,10 @@ One row per plan in every repo. Status is one of Implemented x.y.z, Decided, Pro
 | [asi_kletz/docs/single-instance-plan.md](../asi_kletz/docs/single-instance-plan.md) | Kletz enforces the same convention, implemented independently. Re-targeted from 0.3.0. | Implemented 0.6.0 |
 | [asi_dewey/docs/automation-server-plan.md](../asi_dewey/docs/automation-server-plan.md) | Dewey gains a local automation server (JSON over localhost) so an agent can drive a running window, and the theme badge; its phase 5 adds a section "The automation session" to this file. | Implemented in 0.7.0 |
 | [asi_kletz/docs/automation-server-plan.md](../asi_kletz/docs/automation-server-plan.md) | Kletz gains the same automation server and theme badge, implemented independently. | Implemented in 0.7.0 |
-| [asi_hopper/docs/integration-plan.md](../asi_hopper/docs/integration-plan.md) | Hopper (read only) into both primary tools: Dewey's `jira_ticket` cache and `jira sync`; Kletz's `jira_key` on deliverables with `jira link` and `jira reconcile`. | Decided; the Dewey side is implemented, the Kletz side is open |
+| [asi_hopper/docs/integration-plan.md](../asi_hopper/docs/integration-plan.md) | Hopper (read only) into both primary tools: Dewey's `jira_ticket` cache and `jira sync`; Kletz's `jira_key` on deliverables with `jira link` and `jira reconcile`. | Decided; the Dewey side is implemented; on the Kletz side `jira_key` on the plan row (0.14.0) and the ticket picker (0.15.0) are implemented, `jira link` and `jira reconcile` are open |
 | [asi_hopper/docs/proposal.md](../asi_hopper/docs/proposal.md) | Hopper itself: the audited, replayable Jira door. The read side shipped as 0.1.0; the write side (sandbox, plans, apply) is a design, not a plan with a date. | Read side implemented in 0.1.0; write side delayed indefinitely by owner decision (2026-10-27), not to be raised again |
 | [asi_dewey/docs/onboarding-ingest-plan.md](../asi_dewey/docs/onboarding-ingest-plan.md) | Dewey ingests functional-safety knowledge from the ASI onboarding transcripts into `dewey.db` and the generated workbook. | Proposed, not yet executed |
-| [asi_kletz/docs/weekly-tracker-plan.md](../asi_kletz/docs/weekly-tracker-plan.md) | Kletz holds the engineer's Weekly Activity Tracker: sprints of ten points, sprint items and weeks; the status text imported once and built back out, whole or for the current week; the one-table rule retired. | Implemented: phases 1 to 3 in 0.8.0, the screens 0.8.1, the burndown and velocity charts and the sprint report 0.12.0 |
+| [asi_kletz/docs/weekly-tracker-plan.md](../asi_kletz/docs/weekly-tracker-plan.md) | Kletz holds the engineer's Weekly Activity Tracker: sprints (10 business days, 8 points, as the Sprints section rules; the plan's own ten-point wording of 2026-10-28 is superseded), sprint items and weeks; the status text imported once and built back out, whole or for the current week; the one-table rule retired. | Implemented: phases 1 to 3 in 0.8.0, the screens 0.8.1, the burndown and velocity charts and the sprint report 0.12.0 |
 | [asi_dewey/docs/hidden-identity-plan.md](../asi_dewey/docs/hidden-identity-plan.md) | Every row carries a hidden `uid`; no table shows `id` or `order`; files carry the uid and imports honour it. | Implemented 0.8.0 |
 | [asi_kletz/docs/hidden-identity-plan.md](../asi_kletz/docs/hidden-identity-plan.md) | The same convention for the plan, the sprints, the items and the weeks, implemented independently. | Implemented 0.9.0 |
 | [asi_kletz/docs/sprint-planner-plan.md](../asi_kletz/docs/sprint-planner-plan.md) | Holidays, business days, three years of empty 8-point sprints, the capacity rule enforced. | Implemented 0.10.0 |
@@ -448,6 +469,8 @@ OneDrive - Capgemini/
 ├── asi_escher/          <- generator: diagrams
 ├── asi_gutenberg/       <- generator: documents
 ├── asi_hopper/          <- gateway: read-only Jira door, feeds both primary tools
+├── asi_standards/       <- private: the parametrised controlled documents (QF-17), no code
+├── asi_onboarding/      <- content: the onboarding corpus, diagrams and decks, no package
 └── Roy's Brain/         <- notes, corpus, datasets (not one of the tools, not a repo)
 ```
 
@@ -479,3 +502,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-29, night: kletz 0.14.0, standards and the export from the Safety Plan window.*
 *Revision 2026-10-29, night, later: kletz 0.14.1 and gutenberg 0.6.0, the original's page orientations kept (the `section` block, read from Word); every table repeats its header row on every page in both files.*
 *Revision 2026-10-29, late: kletz 0.15.0, the points rule revised and a Jira ticket per work product.*
+*Revision 2026-10-29, later: kletz 0.15.1 (a plan out of phase order paints whole) and 0.15.2 (the wheel never picks a combobox value); the Policies section; asi_onboarding in the title table; asi_standards and asi_onboarding in the layout; the 0.7.0 ladder row and the hopper integration row brought up to date; the tracker plan's row says 8 points.*
