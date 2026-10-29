@@ -4,7 +4,24 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
-## [2026-10-29, the people in a role]
+## [2026-10-29, the Outlook method and the work product links]
+
+### Added
+- asi_kletz 0.20.0 on the ladder. The owner, 2026-10-29: "use the outlook method please and also please add the
+  ability to add url parameters to each deliverable... each deliverable may have multiple url... make sure that
+  the excel export includes links to the work products wherever they may be... on multiple urls just go to first;
+  list of urls is sequential while lists of names are alphabetical... include links to work products in the tool
+  too... use microsoft homepage as placeholder url for all." A Look up button beside each role's people editor
+  searches the Outlook address book on this machine (COM through PowerShell, on a worker thread) and inserts the
+  picked `Name <email>`; `people lookup` for an agent. A plan row's `urls` (schema 10) is an ordered list, the
+  first the link: the Excel export's Work product hyperlink and Work product URLs columns, `no ticket attached`
+  for a row without a ticket, `row_N_url` / `row_N_urls` for the standards, links and Open in the window,
+  `plan urls --placeholder`.
+
+### Changed
+- The title table: asi_kletz 0.20.0; the asi_standards row names the work product's link among the blanks Kletz
+  supplies.
+
 
 ### Added
 - asi_kletz 0.18.1 (`gui.log`, the window's trace) and 0.19.0 on the ladder. 0.19.0, the owner, 2026-10-29: "each
