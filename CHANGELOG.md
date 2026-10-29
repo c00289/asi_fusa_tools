@@ -7,6 +7,8 @@ because this repo holds a document and no code.
 ## 2026-10-29
 
 ### Added
+- `asi_standards` (private) in the title table: the parametrised standards, the QF-17 Safety Plan first; the
+  controlled-document house rule; asi_gutenberg 0.3.0 (`from_docx`, parameters, the command line, landscape pages).
 - The ladder: asi_kletz 0.11.4, 0.12.0 (charts, sprint report, roadmap), 0.13.0 (plan_uid, CI), 0.13.1 and asi_dewey
   0.8.2 (the scrollbar thumb); the tracker plan's row says fully implemented; the thumb note under the family palette.
 - The continuous-integration house rule: ruff and pytest on windows-latest on every push, tag and pull request, in

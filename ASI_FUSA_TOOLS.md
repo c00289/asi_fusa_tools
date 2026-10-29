@@ -10,9 +10,10 @@ The name tells you the role before you open the folder.
 | `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.8.2 |
 | `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.13.1 |
 | `asi_escher` | **M. C. Escher** (1898 to 1972), graphic artist of impossible geometry | he drew structure | **Generator.** Pure-Python diagram engine: activity, flowchart, state machine, and SysML BDD / IBD / REQ diagrams, laid out by a deterministic layered algorithm and rendered to PNG, SVG, Graphviz DOT, and Mermaid. No Graphviz, Node, or browser needed. | `asi_escher` / `asi-escher` | 0.1.1 |
-| `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.2.1 |
+| `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.3.0 |
 | `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.5 |
 | `asi_fusa_tools` | nobody; it is the charter, not a tool | | **Charter.** This document, the conventions every repo tests against, and the plans index. No code. | none | dated |
+| `asi_standards` | nobody; it is a shelf, not a tool | | **Private.** The parametrised standards: a controlled document brought in from Word with asi_gutenberg (`from_docx`), the original preserved byte for byte with its SHA-256, the imported Markdown source beside it, its blanks named as `{{ parameters }}` and filled at build. Documents and dated entries, no code. First: the QF-17 Safety Plan (2026-10-29). | `asi_standards` | dated |
 
 ## The ontology
 
@@ -141,6 +142,9 @@ Non-edges matter as much:
   entries, and git history, and nothing else: no `pyproject.toml`, no `uv`, no tests.
 - Conventions keep their names once tests refer to them: *the family lock* and *the family
   palette* stay so named.
+- A controlled document (a QMS form, a plan with people's names) never enters a public repo, not even in
+  history: it lives in `asi_standards` (private), and asi_gutenberg's tests look for that checkout beside
+  themselves and skip when it is absent (owner, 2026-10-29).
 - Continuous integration (2026-10-28): every Python repo carries `.github/workflows/ci.yml`, which runs
   `ruff check src tests` and `pytest -q` on `windows-latest` (Tk is there, so the GUI tests run) on every
   push to main, every `v*` tag and every pull request; a repo that depends on siblings checks them out
@@ -465,3 +469,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-28, last of the night: kletz 0.11.3, the Safety Plan screen one table again.*
 *Revision 2026-10-29: the continuous-integration house rule; the first runs of dewey, escher, gutenberg and hopper green.*
 *Revision 2026-10-29, later: kletz 0.11.4 to 0.13.1 (the double count, the charts and the roadmap, plan_uid, CI) and dewey 0.8.2 (the thumb); the tracker plan fully implemented.*
+*Revision 2026-10-29, evening: asi_standards (private) joins the family with the QF-17 Safety Plan; gutenberg 0.3.0 (from_docx, parameters, landscape); the controlled-document house rule.*
