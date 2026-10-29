@@ -4,6 +4,46 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## [2026-10-29, the deliverable's link]
+
+### Changed
+- asi_gutenberg 0.9.0 and asi_kletz 0.21.0 on the ladder. The owner, 2026-10-29, on the exported QF-17: "Could we
+  turn the name of the safety deliverable into a clickable URL and highlight it blue instead of green so it pops?"
+  Gutenberg's in-place fill reads an inline link, `[Safety Plan]({{ row_1_url }})`, and writes it into the Word
+  original as a real hyperlink (Word's Hyperlink style over the theme's pale blue `link_bg`, never the green
+  mark; an unfilled url collapses to the plain name); asi_standards writes every QF-17 plan row's deliverable
+  that way and adds `abridged-headers.json`; Kletz's `plan export` passes the mapping (asi_gutenberg 0.8.0's
+  abridged headers), carries `abridged` and `pages`, warns without Word, and the Excel sheet's Safety
+  Deliverables cell links to the first work product URL.
+- The title table: asi_gutenberg 0.9.0 (it said 0.7.2), asi_kletz 0.21.0.
+
+### Decided, pending the owner
+- The Confluence integration plan of the same day names asi_kletz 0.21.0 for its first phase (URL kinds and the
+  audited placeholder replacement); 0.21.0 is now the deliverable's link, so that phase takes the next number.
+
+## [2026-10-29, Confluence into the family: the plan]
+
+### Added
+- The plans index lists [asi_hopper/docs/confluence-integration-plan.md](../asi_hopper/docs/confluence-integration-plan.md),
+  the owner's ask of 2026-10-29: "when we add confluence read only into kletz we should be able to associate
+  objects with jama urls; obviously the next candidate is replacing the google.com placeholder with a real url once
+  known; but more importantly there may be a way to tie in individual stpa objects to confluence." Then: "i said
+  jama but meant confluence." Three asks, five
+  phases: Kletz URL kinds and the audited placeholder replacement (0.21.0), Kletz `confluence` verbs with Find page
+  and evidence per deliverable (0.22.0), Hopper page anatomy (0.1.9), Dewey STPA step objects read from an STPA page
+  with a citation each (0.9.0, schema 4), one live trace end to end. Read only throughout; the Confluence URL on
+  the plan row is the association, no Jama door.
+- asi_hopper 0.1.8 on the ladder: Confluence evidence bundles (`confluence snapshot`), `verify` and `diff` for both
+  bundle kinds; proposal decision 6 superseded by the owner (Confluence in play, read only, inside Hopper).
+
+### Applied
+- The plan's section 9 records that asi_hopper, asi_dewey and asi_kletz are public (checked with `gh repo view`)
+  and that Hopper's Confluence fixtures and its first page bundle held real STPA content, unpushed. The charter's
+  rule on controlled documents was applied the same day, before the first push: the fixtures carry synthetic page
+  bodies, comments, selections, excerpts and account ids of the same shape; the real bundle stays local and
+  git-ignored (asi_standards is the place for it if versioned); the 0.1.7 and 0.1.8 commits were rebuilt without
+  the real text. Every plan that records real page text in a public repo follows the same rule from here on.
+
 ## [2026-10-29, the Outlook method and the work product links]
 
 ### Added
