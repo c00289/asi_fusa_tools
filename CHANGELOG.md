@@ -4,6 +4,12 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## 2026-10-29
+
+### Added
+- The continuous-integration house rule: ruff and pytest on windows-latest on every push, tag and pull request, in
+  every Python repo (asi_kletz's workflow ships with its 0.13.0).
+
 ## [2026-10-28, later the same day]
 
 ### Changed

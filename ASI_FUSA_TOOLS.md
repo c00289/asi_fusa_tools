@@ -141,6 +141,10 @@ Non-edges matter as much:
   entries, and git history, and nothing else: no `pyproject.toml`, no `uv`, no tests.
 - Conventions keep their names once tests refer to them: *the family lock* and *the family
   palette* stay so named.
+- Continuous integration (2026-10-28): every Python repo carries `.github/workflows/ci.yml`, which runs
+  `ruff check src tests` and `pytest -q` on `windows-latest` (Tk is there, so the GUI tests run) on every
+  push to main, every `v*` tag and every pull request; a repo that depends on siblings checks them out
+  beside itself. A release is green by that run, not by anyone's word.
 
 ## Identity: `id` and `uid`
 
@@ -452,3 +456,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-28, closing: kletz 0.11.1, Refresh signs in.*
 *Revision 2026-10-28, closing again: kletz 0.11.2, sprint start and end beside the sprint.*
 *Revision 2026-10-28, last of the night: kletz 0.11.3, the Safety Plan screen one table again.*
+*Revision 2026-10-29: the continuous-integration house rule; the first runs of dewey, escher, gutenberg and hopper green.*
