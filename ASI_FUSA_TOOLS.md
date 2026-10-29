@@ -8,7 +8,7 @@ The name tells you the role before you open the folder.
 | Repo | Named after | Because | Role | Package / command | Version |
 |---|---|---|---|---|---|
 | `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.8.4 |
-| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.16.1 |
+| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.18.0 |
 | `asi_escher` | **M. C. Escher** (1898 to 1972), graphic artist of impossible geometry | he drew structure | **Generator.** Pure-Python diagram engine: activity, flowchart, state machine, and SysML BDD / IBD / REQ diagrams, laid out by a deterministic layered algorithm and rendered to PNG, SVG, Graphviz DOT, and Mermaid. No Graphviz, Node, or browser needed. | `asi_escher` / `asi-escher` | 0.1.3 |
 | `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.7.1 |
 | `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.7 |
@@ -163,8 +163,12 @@ Owner decisions that bind every repo and every agent brief, collected here so no
 - **Controlled documents stay private.** A QMS document, a form or a plan with people's names lives in
   `asi_standards` (private) and never enters a public repo, not even in history; asi_gutenberg (public) holds
   the machinery and none of the documents.
-- **The sprint rule.** A sprint is 10 business days and 8 points; a holiday stretches the dates and never cuts
-  the points (the Sprints section below). Every brief that touches sprints, estimates or deadlines carries it.
+- **The sprint rule.** A sprint is 14 calendar days, Tuesday to the Monday 13 days later, and 8 points; the next
+  starts the next day; a holiday never moves, stretches or shortens a sprint and never cuts the points; sprints
+  are numbered across the programme from Sprint 31 (2026-10-27 to 2026-11-09), the picture from systems
+  engineering being the law (the Sprints section below). The owner, 2026-10-29: "this supersedes anything I said
+  before"; the rule of 2026-10-28 (10 business days, holidays stretching the dates) is gone. Every brief that
+  touches sprints, estimates or deadlines carries it.
 - **The privacy wording for onboarding material.** The verbatim transcript dump with names (v.00) and the
   biographies were *deleted for PII*; they were never moved, archived or kept elsewhere, and are not to be
   recreated. Text anywhere that says otherwise is wrong and is corrected.
@@ -196,18 +200,36 @@ Decided 2026-10-28, implemented in asi_dewey 0.8.0 and asi_kletz 0.9.0 (the two
 
 ## Sprints (asi_kletz)
 
-Decided by the owner 2026-10-28, for the sprint planner, the deadline calculation and the point
-estimates:
+Decided by the owner 2026-10-29, for the sprint planner, the deadline calculation and the point
+estimates, superseding the rule of 2026-10-28. The owner's words: "what we know as sprint 3 is actually sprint 31, renumber appropriately, and then ensure that sprints always go Tuesday to Tuesday; this supersedes anything I said before; I also included a picture from systems engineering that is law for our sprints." The picture, a strip of
+seven sprints:
 
-- **A sprint spans 10 business days.** Monday to Friday count; weekends and holidays do not, so a
-  sprint that contains a holiday ends one calendar day later per holiday. Dates move as holidays
-  become real; the cadence does not.
-- **Capacity is 8 points per sprint, company policy** (8 productive days of the 10). Holidays never
-  reduce points. Since asi_kletz 0.10.0 this is a fixed global (`SPRINT_CAPACITY = 8`), not a setting:
-  every sprint that is not Closed is 8 on open, and only a Closed sprint keeps another number as history.
-- Sprints are consecutive with no gaps, numbered across the programme (`SPRINT n`); the chain
-  continues from Sprint 2 (2026-10-27 to 2026-11-10). Every agent that touches sprints, estimates or
+| Sprint | Start (Tuesday) | End (Monday) |
+|---|---|---|
+| 31 | 2026-10-27 | 2026-11-09 |
+| 32 | 2026-11-10 | 2026-11-23 |
+| 33 | 2026-11-24 | 2026-12-07 |
+| 34 | 2026-12-08 | 2026-12-21 |
+| 35 | 2026-12-22 | 2027-01-04 |
+| 36 | 2027-01-05 | 2027-01-18 |
+| 37 | 2027-01-19 | 2027-02-01 |
+
+- **A sprint is 14 calendar days, Tuesday to the Monday 13 days later**; the next starts the next day.
+  A holiday is a day off inside a sprint and never moves, stretches or shortens it (Sprint 35 runs
+  straight through Christmas and New Year). Since asi_kletz 0.18.0 the tool refuses a sprint created or
+  edited off this cadence (from 2026-10-27 on; older Closed sprints are history) and `sprint align 31
+  --start 2026-10-27` moves a chain written under the old rule onto it.
+- **Capacity is 8 points per sprint, company policy.** Holidays never reduce points. Since asi_kletz
+  0.10.0 this is a fixed global (`SPRINT_CAPACITY = 8`), not a setting: every sprint that is not Closed
+  is 8 on open, and only a Closed sprint keeps another number as history.
+- Sprints are consecutive with no gaps, numbered across the programme (`SPRINT n`) from Sprint 31
+  (2026-10-27 to 2026-11-09): what the tool called Sprint 2 is Sprint 31, Sprint 3 is Sprint 32, and the
+  closed Sprint 1 (2026-10-12 to 2026-10-27) is Sprint 30. Every agent that touches sprints, estimates or
   deadlines carries this rule in its brief.
+- Superseded on 2026-10-29: "A sprint spans 10 business days. Monday to Friday count; weekends and
+  holidays do not, so a sprint that contains a holiday ends one calendar day later per holiday. Dates
+  move as holidays become real; the cadence does not." and the chain continuing from Sprint 2
+  (2026-10-27 to 2026-11-10). Text anywhere that still says so is history, not the rule.
 
 ## One primary tool at a time (the family lock)
 
@@ -418,6 +440,8 @@ set relative to the charter. Each plan's last phase updates this table and the t
 | 0.15.3 | | broken-windows sweep: README, `docs/plan.md`, CHANGELOG compare links; the lock takes asi_hopper 0.1.6 and asi_escher 0.1.2 | `CHANGELOG.md` | committed, untagged (2026-10-29) |
 | 0.16.0 | | the export writes the Word original filled in place through asi_gutenberg 0.7.0's `fill_docx`: the template exactly, every table's first row repeating per page, the PDF Word's own print | `CHANGELOG.md` | committed, untagged (2026-10-29) |
 | 0.8.4 (dewey) / 0.16.1 (kletz) | the lock follows the siblings to asi_escher 0.1.3, asi_gutenberg 0.7.1 and asi_hopper 0.1.7 | a failed Word print keeps Gutenberg's PDF, as 0.16.0 promised (asi_gutenberg 0.7.1); the lock likewise | `CHANGELOG.md` | committed, untagged (2026-10-29) |
+| 0.17.0 (kletz) | | `row_N_jira_key` stacked over the status in the exported QF-17; the Word original filled with green marks (asi_gutenberg 0.7.2) | `CHANGELOG.md` | committed, untagged (2026-10-29) |
+| 0.18.0 (kletz) | | sprints on the owner's law of 2026-10-29: 14 days Tuesday to Monday, numbered from Sprint 31, holidays never moving a sprint; the cadence guard; `sprint align` renumbers and re-dates an existing chain and carries every reference; `sprint_days` no setting | `CHANGELOG.md` | committed, untagged (2026-10-29) |
 
 ### Releases and tags
 
@@ -509,3 +533,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-29, night, later: kletz 0.14.1 and gutenberg 0.6.0, the original's page orientations kept (the `section` block, read from Word); every table repeats its header row on every page in both files.*
 *Revision 2026-10-29, late: kletz 0.15.0, the points rule revised and a Jira ticket per work product.*
 *Revision 2026-10-29, later: kletz 0.15.1 (a plan out of phase order paints whole) and 0.15.2 (the wheel never picks a combobox value); the Policies section; asi_onboarding in the title table; asi_standards and asi_onboarding in the layout; the 0.7.0 ladder row and the hopper integration row brought up to date; the tracker plan's row says 8 points.*
+*Revision 2026-10-29, the sprint law: kletz 0.17.0 (the Jira key stacked in the export) and 0.18.0 (sprints are 14 days, Tuesday to Monday, numbered from Sprint 31, the picture from systems engineering; `sprint align`); the Policies bullet and the Sprints section rewritten to the owner's words of 2026-10-29, the rule of 2026-10-28 superseded.*

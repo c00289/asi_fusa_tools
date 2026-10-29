@@ -4,6 +4,17 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## [2026-10-29, the sprint law]
+
+### Changed
+- The sprint rule, superseded by the owner on 2026-10-29: "what we know as sprint 3 is actually sprint 31, renumber appropriately, and then ensure that sprints always go Tuesday to Tuesday; this supersedes anything I said before; I also included a picture from systems engineering that is law for our sprints." The Policies bullet and the Sprints section
+  now say a sprint is 14 calendar days, Tuesday to the Monday 13 days later, 8 points, numbered from Sprint 31
+  (2026-10-27 to 2026-11-09), holidays never moving a sprint; the picture's seven sprints are the table there;
+  the rule of 2026-10-28 (10 business days, holidays stretching the dates) is quoted as superseded.
+
+### Added
+- asi_kletz 0.17.0 and 0.18.0 on the ladder; 0.18.0 in the title table: the cadence guard and `sprint align`.
+
 ## [2026-10-29, later the same day]
 
 ### Added
