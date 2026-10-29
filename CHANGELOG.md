@@ -4,6 +4,23 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## [2026-10-29, the control structures screen]
+
+### Added
+- asi_dewey 0.10.0 on the ladder: phase 3 of `asi_dewey/docs/control-structure-plan.md`, the screen. The owner,
+  2026-10-29: "a screen that is used as a CRUD for STPA control structures… the user can export them to their folder
+  of preference… there must be Select all / Select none buttons, the default must be drawio png". A Control structures
+  screen (the structures with New from…, Duplicate, Delete, Import draw.io…, Validate and Export…; the parts as a
+  stacked tree with a form; escher's preview re-rendered off the Tk thread after every save, with the OCR verdict and
+  Open in VS Code on the `.drawio`) and the Export… dialog (the folder remembered, drawio and png by default, Select
+  all / Select none, OCR on), whose work is the `cs export` verb so an agent gets the same Result. A signal shared by
+  two edges leaving one controller (one feedback to two receivers, as the owner's structure has) is information, not a
+  warning. Schema unchanged.
+
+### Changed
+- The title table: asi_dewey 0.10.0 (it said 0.9.0); the tag line names the untagged 0.10.0; the plans index says
+  phases 1 to 3 of the control-structure plan are implemented, phase 4 (STPA on top) later.
+
 ## [2026-10-29, the deliverable's link]
 
 ### Changed
