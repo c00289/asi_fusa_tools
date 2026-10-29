@@ -7,8 +7,8 @@ The name tells you the role before you open the folder.
 
 | Repo | Named after | Because | Role | Package / command | Version |
 |---|---|---|---|---|---|
-| `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.8.1 |
-| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.11.3 |
+| `asi_dewey` | **Melvil Dewey** (1851 to 1931), librarian, inventor of the Dewey Decimal Classification | one classification scheme, many views | **Primary tool.** Functional-safety working-knowledge store for the Wheel Loader programme: tasks, facts, machine functions, use cases, links, Jira tickets (cached from Jira through asi_hopper), QMS documents, and people; the safety plan rows it still carries are a cached copy edited in asi_kletz, and since 0.4.0 it shows no Jira or Safety Plan windows of its own. SQLite is the truth; Excel and JSON are generated views; a CLI and a tkinter window drive the same command path. | `asi_dewey` / `asi-dewey`, `asi-dewey-gui` | 0.8.2 |
+| `asi_kletz` | **Trevor Kletz** (1922 to 2013), chemical engineer, father of inherently safer design and HAZOP | taught industry to ask of every line of a plan what could go wrong | **Primary tool.** The platform **Safety Plan** and nothing else: one row per deliverable with its lifecycle phase, location, QMS references, author, verifier, reviewers, deadline, and status. Same architecture as Dewey, split from it on 2026-10-27, shares nothing with it at runtime. | `asi_kletz` / `asi-kletz`, `asi-kletz-gui` | 0.13.1 |
 | `asi_escher` | **M. C. Escher** (1898 to 1972), graphic artist of impossible geometry | he drew structure | **Generator.** Pure-Python diagram engine: activity, flowchart, state machine, and SysML BDD / IBD / REQ diagrams, laid out by a deterministic layered algorithm and rendered to PNG, SVG, Graphviz DOT, and Mermaid. No Graphviz, Node, or browser needed. | `asi_escher` / `asi-escher` | 0.1.1 |
 | `asi_gutenberg` | **Johannes Gutenberg** (c. 1400 to 1468), inventor of the movable-type printing press | he made documents reproducible | **Generator.** Pure-Python document engine: specs, reports, plans, procedures, minutes, memos, safety cases, ICDs, analyses, checklists, and release notes, written as Markdown (the source of truth) and rendered from that Markdown to PDF and Word as a triplet that can never disagree. | `asi_gutenberg` (library only) | 0.2.1 |
 | `asi_hopper` | **Grace Hopper** (1906 to 1992), rear admiral, compiler pioneer | she built the first compiler so people could instruct a machine in their own words | **Gateway.** Read-only, audited, replayable door into Jira for the Wheel Loader programme: a library, a CLI, and a fixture-replay gateway so siblings and tests never touch the network. OAuth 2.1 through Atlassian's Remote MCP Server, no API tokens, no writes. Feeds live issues to both primary tools. | `asi_hopper` / `asi-hopper` | 0.1.5 |
@@ -222,6 +222,9 @@ way an agent drives a running session; data moves between Dewey and Kletz sequen
 
 Decided 2026-10-27, implemented in asi_dewey 0.3.0 and asi_kletz 0.3.0:
 
+*Since asi_dewey 0.8.2 and asi_kletz 0.13.1 (owner, 2026-10-29) the scrollbar thumb is the palette's dimmed primary
+at rest and the primary under the pointer, in every tone; the trough stays the background.*
+
 1. **Both tools keep the grid look, but never look the same.** Each opens in its own house
    default, and each latches its own choice (`%LOCALAPPDATA%\asi\<tool>\prefs.json`, override
    `$ASI_<TOOL>_PREFS`); a pick in one never reaches the other.
@@ -379,6 +382,10 @@ set relative to the charter. Each plan's last phase updates this table and the t
 | 0.11.1 | | Refresh on the JIRA Live Data screen signs in to Atlassian itself when the session is rejected (the browser opens for the approval, the fetch follows; one sign-in per Refresh, never on the first-show fetch); `jira login` on the command line; needs asi_hopper 0.1.5 | `CHANGELOG.md` | shipped and tagged v0.11.1 (2026-10-28) |
 | 0.11.2 | | Sprint start and Sprint end, calculated, right of Sprint on the Safety Plan (schema 6) | `CHANGELOG.md` | shipped and tagged v0.11.2 (2026-10-28) |
 | 0.11.3 | | the Safety Plan screen is one table: no frozen split, no flag columns (the Matrix has them); the stacked plan column first, the non-flag fields beside it | `CHANGELOG.md` | shipped and tagged v0.11.3 (2026-10-28) |
+| 0.11.4 | | the committed-item double count answered: a deliverable's own sprint items are the committed part of its weight | `docs/plan-points-plan.md` | shipped and tagged v0.11.4 (2026-10-28) |
+| 0.12.0 | | the tracker plan's last items: `sprint_burndown`, `velocity` and `plan_roadmap` charts (matplotlib, in the diagram catalog), the `sprint_report` and `plan_roadmap` documents | `docs/weekly-tracker-plan.md` | shipped and tagged v0.12.0 (2026-10-28) |
+| 0.13.0 | | sprint items point at plan rows by `plan_uid` (schema 7); `.github/workflows/ci.yml`, first run green | `docs/hidden-identity-plan.md` | shipped and tagged v0.13.0 (2026-10-28) |
+| 0.8.2 (dewey) / 0.13.1 (kletz) | the scrollbar thumb is the dimmed primary at rest, the neon under the pointer | same | `CHANGELOG.md` | shipped and tagged v0.8.2 / v0.13.1 (2026-10-29) |
 
 ### Releases and tags
 
@@ -389,7 +396,7 @@ version and the first line of the CHANGELOG entry; `git push origin vx.y.z` publ
 GitHub Release of the same name carries the CHANGELOG section as its notes, so the release page and
 the file never say different things. Tags are never moved; a mistake is a new patch version. The
 histories were restarted on 2026-10-28, so versions before the first tag of each repo exist in
-`CHANGELOG.md` only. Current tags: asi_dewey v0.8.1, asi_kletz v0.11.3, asi_escher v0.1.1,
+`CHANGELOG.md` only. Current tags: asi_dewey v0.8.2, asi_kletz v0.13.1, asi_escher v0.1.1,
 asi_gutenberg v0.2.1, asi_hopper v0.1.5; asi_fusa_tools and asi_onboarding carry dates, not versions.
 
 ## Where the integration plans live
@@ -414,7 +421,7 @@ One row per plan in every repo. Status is one of Implemented x.y.z, Decided, Pro
 | [asi_hopper/docs/integration-plan.md](../asi_hopper/docs/integration-plan.md) | Hopper (read only) into both primary tools: Dewey's `jira_ticket` cache and `jira sync`; Kletz's `jira_key` on deliverables with `jira link` and `jira reconcile`. | Decided; the Dewey side is implemented, the Kletz side is open |
 | [asi_hopper/docs/proposal.md](../asi_hopper/docs/proposal.md) | Hopper itself: the audited, replayable Jira door. The read side shipped as 0.1.0; the write side (sandbox, plans, apply) is a design, not a plan with a date. | Read side implemented in 0.1.0; write side delayed indefinitely by owner decision (2026-10-27), not to be raised again |
 | [asi_dewey/docs/onboarding-ingest-plan.md](../asi_dewey/docs/onboarding-ingest-plan.md) | Dewey ingests functional-safety knowledge from the ASI onboarding transcripts into `dewey.db` and the generated workbook. | Proposed, not yet executed |
-| [asi_kletz/docs/weekly-tracker-plan.md](../asi_kletz/docs/weekly-tracker-plan.md) | Kletz holds the engineer's Weekly Activity Tracker: sprints of ten points, sprint items and weeks; the status text imported once and built back out, whole or for the current week; the one-table rule retired. | Phases 1 to 3 implemented 0.8.0, the screens 0.8.1; the burndown and velocity diagrams and the sprint report open |
+| [asi_kletz/docs/weekly-tracker-plan.md](../asi_kletz/docs/weekly-tracker-plan.md) | Kletz holds the engineer's Weekly Activity Tracker: sprints of ten points, sprint items and weeks; the status text imported once and built back out, whole or for the current week; the one-table rule retired. | Implemented: phases 1 to 3 in 0.8.0, the screens 0.8.1, the burndown and velocity charts and the sprint report 0.12.0 |
 | [asi_dewey/docs/hidden-identity-plan.md](../asi_dewey/docs/hidden-identity-plan.md) | Every row carries a hidden `uid`; no table shows `id` or `order`; files carry the uid and imports honour it. | Implemented 0.8.0 |
 | [asi_kletz/docs/hidden-identity-plan.md](../asi_kletz/docs/hidden-identity-plan.md) | The same convention for the plan, the sprints, the items and the weeks, implemented independently. | Implemented 0.9.0 |
 | [asi_kletz/docs/sprint-planner-plan.md](../asi_kletz/docs/sprint-planner-plan.md) | Holidays, business days, three years of empty 8-point sprints, the capacity rule enforced. | Implemented 0.10.0 |
@@ -457,3 +464,4 @@ is the one repo with no code. Every relative link from a sibling's `docs/` to th
 *Revision 2026-10-28, closing again: kletz 0.11.2, sprint start and end beside the sprint.*
 *Revision 2026-10-28, last of the night: kletz 0.11.3, the Safety Plan screen one table again.*
 *Revision 2026-10-29: the continuous-integration house rule; the first runs of dewey, escher, gutenberg and hopper green.*
+*Revision 2026-10-29, later: kletz 0.11.4 to 0.13.1 (the double count, the charts and the roadmap, plan_uid, CI) and dewey 0.8.2 (the thumb); the tracker plan fully implemented.*
