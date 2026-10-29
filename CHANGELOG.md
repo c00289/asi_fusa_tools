@@ -7,6 +7,8 @@ because this repo holds a document and no code.
 ## 2026-10-29
 
 ### Added
+- asi_gutenberg 0.4.1 in the title table and the tags line (the `==mark==` highlight for filled parameters);
+  the QF-17 Safety Plan's 20 role parameters.
 - asi_gutenberg 0.3.1 in the title table and the tags line; the QF-17 Safety Plan's first parameter.
 - `asi_standards` (private) in the title table: the parametrised standards, the QF-17 Safety Plan first; the
   controlled-document house rule; asi_gutenberg 0.3.0 (`from_docx`, parameters, the command line, landscape pages).
