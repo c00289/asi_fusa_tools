@@ -44,6 +44,27 @@ because this repo holds a document and no code.
   git-ignored (asi_standards is the place for it if versioned); the 0.1.7 and 0.1.8 commits were rebuilt without
   the real text. Every plan that records real page text in a public repo follows the same rule from here on.
 
+## [2026-10-29, control structures]
+
+### Added
+- asi_escher 0.2.0 and asi_dewey 0.9.0 on the ladder: phases 1 and 2 of `asi_dewey/docs/control-structure-plan.md`.
+  The owner, 2026-10-29: "introduce a screen that is used as a CRUD for STPA control structures; the idea is that
+  we would be able to use the factory design pattern to build a control structure, or many; we need to make
+  control structures like the one in Roy's Brain ... the user can export them to their folder of preference,
+  selecting the format ... the default must be drawio png"; of every diagram, "use OCR on the PNG so that the
+  final diagrams are competent" and "all image stuff is handled through escher". Escher draws the
+  `control_structure` kind, writes the draw.io file from its own layout (no draw.io program: the VS Code extension
+  previews it) and reads the PNG back through the Windows OCR engine; Dewey holds the structure as seven entities
+  with their rules, builds it through a factory (`blank`, `template:wheel_loader_master` from the private shelf,
+  `from_drawio`, `from_datasets`, `clone`), turns rows into the drawing in one place and exports through escher
+  with the OCR verdict in every `Result`. The real wheel loader structure stays in asi_standards and in the
+  owner's database; the public repositories hold a synthetic one. The plans index lists the plan; phase 3, the
+  screen, is open.
+
+### Changed
+- The title table: asi_dewey 0.9.0 (control structures), asi_escher 0.2.0 (control structures, the draw.io writer,
+  the OCR gate); the tag line names the untagged 0.9.0 and 0.2.0.
+
 ## [2026-10-29, the Outlook method and the work product links]
 
 ### Added
