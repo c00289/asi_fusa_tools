@@ -7,6 +7,7 @@ because this repo holds a document and no code.
 ## [2026-10-28, later the same day]
 
 ### Changed
+- asi_kletz 0.11.2 on the ladder: Sprint start and Sprint end beside Sprint.
 - asi_kletz 0.11.1 on the ladder: a Refresh on a rejected Atlassian session signs in; the JIRA Live Data section says so.
 - asi_hopper 0.1.5 in the title table: the gateway reports the leaf of an exception group, `auth status` probes the session.
 - asi_kletz 0.11.0 on the ladder and its plan in the index: points, panel defaults, calculated sprint and deadline.
