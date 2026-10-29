@@ -7,6 +7,8 @@ because this repo holds a document and no code.
 ## 2026-10-29
 
 ### Added
+- asi_kletz 0.14.0 on the ladder: standards, `jira_key`, the `parameter` entity, `plan export`, the export button and the
+  parameters box on the Safety Plan's details.
 - asi_gutenberg 0.5.0 (`--params-file`); the QF-17 Safety Plan's 144 row parameters, filled by Kletz.
 - asi_gutenberg 0.4.1 in the title table and the tags line (the `==mark==` highlight for filled parameters);
   the QF-17 Safety Plan's 20 role parameters.
