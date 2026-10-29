@@ -7,6 +7,7 @@ because this repo holds a document and no code.
 ## 2026-10-29
 
 ### Added
+- asi_gutenberg 0.5.0 (`--params-file`); the QF-17 Safety Plan's 144 row parameters, filled by Kletz.
 - asi_gutenberg 0.4.1 in the title table and the tags line (the `==mark==` highlight for filled parameters);
   the QF-17 Safety Plan's 20 role parameters.
 - asi_gutenberg 0.3.1 in the title table and the tags line; the QF-17 Safety Plan's first parameter.
