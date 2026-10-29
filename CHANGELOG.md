@@ -4,6 +4,25 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## [2026-10-29, STPA moves to Kletz]
+
+### Changed
+- The owner, 2026-10-29: "control structures were supposed to go into Kletz and not Dewey"; asked where STPA should
+  live: "move everything to Kletz". asi_kletz 0.24.0 on the ladder: the control structures of asi_dewey 0.9.0 and
+  0.10.0 and the STPA step objects of asi_dewey 0.10.0 and 0.10.1 ported whole (the thirteen entities, schema 11,
+  the rules, the factories and readers, the `cs` and `stpa` verbs with their names and Result shapes, the two
+  screens, the report and the trace), adapted to Kletz's structure (rule objects on the plain `EntityService`,
+  JSON lists through `schema/lists.py`, the Confluence snapshot through Kletz's `ConfluenceService`, Kletz's own
+  `BackgroundFetch`, `control_structures_dir` in `kletz.toml`). Kletz is the home of STPA next to the safety plan;
+  asi_dewey loses both in a later release.
+- The title table: asi_kletz 0.24.0 and what it now holds; asi_dewey 0.10.1, no longer claiming the control
+  structures or the STPA objects. The ladder gains the missing Kletz rows 0.22.0 and 0.23.0 (the Confluence
+  phases A and B) and asi_dewey 0.10.1, and marks the three Dewey STPA rows as moved. The integration table: Kletz
+  draws the control structures and the STPA trace with escher, prints the STPA report with Gutenberg, reads
+  Confluence and the STPA pages through Hopper. The plans index: the control-structure plan lives in
+  `asi_kletz/docs/`, every phase implemented in 0.24.0; the Confluence plan's STPA objects point at Kletz. The tag
+  line names 0.24.0 and 0.10.1 among the untagged.
+
 ## [2026-10-29, the control structures screen]
 
 ### Added
