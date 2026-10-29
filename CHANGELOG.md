@@ -4,6 +4,21 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## [2026-10-29, the people in a role]
+
+### Added
+- asi_kletz 0.18.1 (`gui.log`, the window's trace) and 0.19.0 on the ladder. 0.19.0, the owner, 2026-10-29: "each
+  safety deliverable can have multiple authors, so for any safety case field, instead of the parameter being a string
+  it is now an array of human names sorted alphabetically; make all updates necessary; also must include email
+  alongside name." A role parameter holds people (name and email each, alphabetical, validated; schema 9); a legacy
+  name with no email is kept and printed verbatim until people are saved; the export renders a role inline as
+  `Name (email), ...`.
+
+### Changed
+- The title table: asi_kletz 0.19.0 and asi_gutenberg 0.7.2 (it said 0.18.0 and 0.7.1 while 0.18.1 and 0.7.2 were
+  current); the asi_standards row says what the blanks hold (the vehicle type, the people per role, the per-row
+  values Kletz supplies). The tags line: kletz 0.15.1 to 0.19.0 and gutenberg 0.7.1 and 0.7.2 committed, untagged.
+
 ## [2026-10-29, the sprint law]
 
 ### Changed
