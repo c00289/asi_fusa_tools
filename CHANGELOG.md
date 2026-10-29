@@ -7,6 +7,7 @@ because this repo holds a document and no code.
 ## 2026-10-29
 
 ### Added
+- asi_kletz 0.15.0: the exported points are the weight the schedule used; a Jira ticket picker on every work product.
 - asi_kletz 0.14.1 and asi_gutenberg 0.6.0: the `section` block; the export keeps the original's page orientations.
 - asi_kletz 0.14.0 on the ladder: standards, `jira_key`, the `parameter` entity, `plan export`, the export button and the
   parameters box on the Safety Plan's details.
