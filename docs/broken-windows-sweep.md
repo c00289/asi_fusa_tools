@@ -93,3 +93,23 @@ publication and asks; nothing is pushed without that approval.
 - A test expectation stale against a rule shipped the same day (the "2 unfilled" pane test).
 - Real names in public repos (demo approvers, a tracker fixture, recorded Jira evidence), reported, not edited.
 - asi_onboarding public while its corpus says internal (owner's decision).
+
+What the first pass two found on top of that:
+
+- A consumer relocked by its own pass one to the producer versions of the morning while a producer's pass one
+  bumped it again in the afternoon (kletz 0.24.1 on escher 0.2.1 and gutenberg 0.9.0 against the committed 0.2.2
+  and 0.9.1): pass two relocks last, every consumer, whatever pass one wrote.
+- A fix made in one primary tool and never mirrored into the sister (kletz 0.18.1's `gui.log` trace, absent from
+  dewey until 0.11.2): list the `gui/` modules of each and read the difference.
+- A tool beside a controlled document two increments behind the document (`asi_standards/tools/roles_from_kletz.py`
+  still matching the Deliverable cell's text after the cell became a link, and writing the Status cell without the
+  Jira key): the test is a dry run on a copy of the source, with the rows of a copy of the owner's database, that
+  must reproduce the copy byte for byte, line endings included (asi_standards is `autocrlf`: the working copy is
+  CRLF, the blob LF).
+- A venv whose stale `*.dist-info` still names the old sibling version while the editable install already runs the
+  new code: check an import surface against the checkout, and clear the read-only folders and `uv sync` before
+  trusting the metadata.
+- `pytest -q` on top of `addopts = "-q"` (escher, hopper, gutenberg) is `-qq`: no summary line, in CI's log
+  either; the counts are the progress characters (`.`, `s`, `F`), or one run with `-o addopts=""`.
+- `ruff format --check` with no path formats the code blocks of the Markdown too (hopper's README and
+  `docs/integration-plan.md` would change); CI's `ruff format --check src tests` is the check that counts.

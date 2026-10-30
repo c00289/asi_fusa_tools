@@ -4,6 +4,28 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## [2026-10-29, the family sweep]
+
+### Added
+- `docs/broken-windows-sweep.md` in the plans index: the recurring per-repo and systemic cleanup (pass one per
+  repo in parallel, pass two across the family, then the commit, tag and push order) and its `/family-sweep`
+  runner beside the repos. The procedure was committed earlier the same day without an entry here; this is it.
+- The ladder: escher 0.2.1 (peers on one tier, a wider canvas, UTF-8 in the OCR gate) and 0.2.2, hopper 0.1.9
+  (the anatomy of a page) and 0.1.10, gutenberg 0.9.1 (the Word session waits for its Word and retries RPC
+  errors), dewey 0.11.1 and 0.11.2 (`gui.log`, the window's trace: the asi_kletz 0.18.1 fix by convention, not
+  shared code), kletz 0.24.1 and 0.24.2 (the lock follows the siblings to escher 0.2.2 and gutenberg 0.9.1): the
+  sweep releases of the day, pass one's and pass two's.
+- Policies: exports fill the Word original in place (asi_gutenberg 0.7.0 `fill_docx`, asi_kletz 0.16.0 `plan
+  export`); STPA lives in Kletz, said in the family rule.
+
+### Changed
+- The title table: asi_dewey 0.11.2, asi_kletz 0.24.2 and asi_gutenberg 0.9.1 (it said 0.11.0, 0.24.0 and 0.9.0).
+  The tag line: every sibling's last tag and what is committed above it (escher v0.2.1, hopper v0.1.9, gutenberg
+  v0.9.0, dewey v0.10.1, kletz v0.24.0), the owner tagging after the sweep. The plans index: the Confluence plan's
+  row says phases A to D shipped (kletz 0.22.0, 0.23.0, hopper 0.1.9, kletz 0.24.0) and what stays the owner's;
+  the control-structure plan's row names Dewey's pointer.
+- `docs/broken-windows-sweep.md`, section 6: what the first pass two found.
+
 ## [2026-10-29, Dewey hands STPA to Kletz]
 
 ### Added
