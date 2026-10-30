@@ -4,6 +4,25 @@ All notable changes to the ASI FuSa Tools charter are recorded here. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); entries are dated, not versioned,
 because this repo holds a document and no code.
 
+## [2026-10-29, Dewey hands STPA to Kletz]
+
+### Added
+- The family rule under Policies. The owner, 2026-10-29: "Dewey is more for experimental and day to day; all true
+  work products will end up in Kletz once sanitized." What is explored in asi_dewey is handed to asi_kletz when it
+  becomes a work product; a new work product is built in Kletz, never in Dewey.
+- asi_dewey 0.11.0 on the ladder: the thirteen STPA entities, their rules, factories, readers, verbs, screens, report
+  and trace removed (asi_kletz 0.24.0 holds them); schema 4 to 5 leaves the thirteen tables of an older database in
+  place, unregistered, nothing dropped; `handover --out <dir>` writes them in the shapes Kletz reads (`dewey-stpa.json`
+  for `load --mode merge`, a datasets folder per structure for `cs new from_datasets`, the evidence bundles for
+  `stpa new from_bundle`, the workbook, a manifest with the Kletz command lines); the round trip rehearsed against
+  Kletz on a synthetic database with equal counts.
+
+### Changed
+- The title table: asi_dewey 0.11.0 and its description (the STPA parts left in 0.11.0, `handover` stays, the family
+  rule); asi_escher 0.2.2 and asi_hopper 0.1.10, what their checkouts declare (it said 0.2.0 and 0.1.8). The plans
+  index: asi_dewey 0.11.0 removed the control-structure phases and keeps `handover`. The tag line: asi_dewey v0.10.1
+  tagged, 0.11.0 committed and untagged.
+
 ## [2026-10-29, STPA moves to Kletz]
 
 ### Changed
