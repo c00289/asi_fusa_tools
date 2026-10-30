@@ -108,7 +108,9 @@ What the first pass two found on top of that:
   CRLF, the blob LF).
 - A venv whose stale `*.dist-info` still names the old sibling version while the editable install already runs the
   new code: check an import surface against the checkout, and clear the read-only folders and `uv sync` before
-  trusting the metadata.
+  trusting the metadata. The same stale folder, left without its `RECORD`, is what a consumer's suite reports as
+  `DeprecationWarning: Implicit None on return values` from `importlib.metadata` (the producer's `version()`
+  lookup finding the husk first); deleting the folder ends it.
 - `pytest -q` on top of `addopts = "-q"` (escher, hopper, gutenberg) is `-qq`: no summary line, in CI's log
   either; the counts are the progress characters (`.`, `s`, `F`), or one run with `-o addopts=""`.
 - `ruff format --check` with no path formats the code blocks of the Markdown too (hopper's README and
